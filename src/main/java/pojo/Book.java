@@ -1,10 +1,19 @@
-package POJO;
+package pojo;
 
 public class Book {
     String isbn;
     String title;
     String author;
     String img;
+    Integer rating;
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
 
     public String getIsbn() {
         return isbn;

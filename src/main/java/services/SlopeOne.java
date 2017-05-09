@@ -1,6 +1,9 @@
 package services;
 
+import pojo.Book;
+
 import java.sql.*;
+import java.util.List;
 
 class SlopeOne {
     private Connection conn;
@@ -25,6 +28,27 @@ class SlopeOne {
 //        } catch (SQLException e) {
 //            e.printStackTrace();
 //        }
+    }
+
+    void addNewRatings(List<Book> list) {
+        try {
+            Statement statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery("select max(userId) from `BX-Book-Ratings`");
+            if (resultSet.next()) {
+                int userId = resultSet.getInt(1) + 1;
+                System.out.println("userId: " + userId);
+                PreparedStatement stmt = conn.prepareStatement("INSERT INTO `BX-Book-Ratings` VALUES (?, ?, ?)");
+                for (Book book : list) {
+                    stmt.setInt(1, userId);
+                    stmt.setString(2, book.getIsbn());
+                    stmt.setInt(3, book.getRating());
+                    stmt.executeUpdate();
+                }
+                resultSet.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     void updateDevTable(int userId, String itemId) {
@@ -111,6 +135,10 @@ class SlopeOne {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    List<Book> showInitialBooks(){
+        return null;
     }
 
     void predictBest(int userId, int n) {
