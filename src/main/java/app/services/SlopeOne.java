@@ -160,6 +160,8 @@ public class SlopeOne {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
         return books;
     }
 
