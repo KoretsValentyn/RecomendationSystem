@@ -22,13 +22,13 @@ public class MainController {
     @RequestMapping(value = "/create/mark/for-book/{isbn}/value/{value}", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     public void hello(@PathVariable("isbn") String isbn, @PathVariable("value") String value) {
-//       System.out.println(isbn);
-//       System.out.println(value);
-
+        slopeOne.addNewRating(isbn, Integer.parseInt(value));
     }
 
     @RequestMapping(value="/recommendations")
     public String recommendations(Map<String, Object> model) {
+        slopeOne.fillDevForCurrentUser();
+        model.put("books",slopeOne.predictBest(slopeOne.getCurrentUserId(), 9));
         return "Recomendations";
     }
 

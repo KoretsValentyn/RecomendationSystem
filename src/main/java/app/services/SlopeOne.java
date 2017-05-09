@@ -11,46 +11,88 @@ import java.util.List;
 public class SlopeOne {
     private Connection conn;
 
-    SlopeOne() {
-        conn = (new DBConnect()).getConnection();
+    public Integer getCurrentUserId() {
+        return currentUserId;
     }
 
-    void test() {
-//        clearRatings();
-//        clearMatrix();
-//        try {
-//            Statement statement = conn.createStatement();
-//            ResultSet resultSet = statement.executeQuery("SELECT * FROM `BX-Book-Ratings`;");
-//            while (resultSet.next()) {
-//                int userId = resultSet.getInt(1);
-//                String itemId = resultSet.getString(2);
-//                System.out.println("userId: " + userId + ", itemId: " + itemId);
-//                updateDevTable(userId, itemId);
-//            }
-//            resultSet.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+    private Integer currentUserId;
+
+    SlopeOne() {
+        conn = (new DBConnect()).getConnection();
+        currentUserId = currentUserId();
+    }
+
+    void fillDevFromRatings() {
+        try {
+            Statement statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM `BX-Book-Ratings`;");
+            while (resultSet.next()) {
+                int userId = resultSet.getInt(1);
+                String itemId = resultSet.getString(2);
+                System.out.println("userId: " + userId + ", itemId: " + itemId);
+                updateDevTable(userId, itemId);
+            }
+            resultSet.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Integer currentUserId() {
+        int userId = 0;
+        try {
+            Statement statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery("select max(userId) from `BX-Book-Ratings`");
+            if (resultSet.next())
+                userId = resultSet.getInt(1) + 1;
+            System.out.println("currentUserId: " + userId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userId;
+    }
+
+    public void addNewRating(String isbn, int rating) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO `BX-Book-Ratings` VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE Book_Rating=?");
+            stmt.setInt(1, currentUserId);
+            stmt.setString(2, isbn);
+            stmt.setInt(3, rating);
+            stmt.setInt(4, rating);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void fillDevForCurrentUser() {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM `BX-Book-Ratings` where userId=?;");
+            stmt.setInt(1, currentUserId);
+            ResultSet resultSet = stmt.executeQuery();
+            while (resultSet.next()) {
+                String itemId = resultSet.getString("ISBN");
+                System.out.println("currentUserId: " + currentUserId + ", itemId: " + itemId);
+                updateDevTable(currentUserId, itemId);
+            }
+            resultSet.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addNewRatings(List<Book> list) {
         try {
-            Statement statement = conn.createStatement();
-            ResultSet resultSet = statement.executeQuery("select max(userId) from `BX-Book-Ratings`");
-            if (resultSet.next()) {
-                int userId = resultSet.getInt(1) + 1;
-                System.out.println("userId: " + userId);
-                PreparedStatement stmt = conn.prepareStatement("INSERT INTO `BX-Book-Ratings` VALUES (?, ?, ?)");
-                for (Book book : list) {
-                    stmt.setInt(1, userId);
-                    stmt.setString(2, book.getIsbn());
-                    stmt.setInt(3, book.getRating());
-                    stmt.executeUpdate();
-                }
-                resultSet.close();
-                for (Book book : list)
-                    updateDevTable(userId, book.getIsbn());
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO `BX-Book-Ratings` VALUES (?, ?, ?)");
+            for (Book book : list) {
+                stmt.setInt(1, currentUserId);
+                stmt.setString(2, book.getIsbn());
+                stmt.setInt(3, book.getRating());
+                stmt.executeUpdate();
             }
+            for (Book book : list)
+                updateDevTable(currentUserId, book.getIsbn());
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -146,7 +188,7 @@ public class SlopeOne {
         List<Book> books = new ArrayList<>(10);
         try {
             Statement statement = conn.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT d.itemID1 FROM dev d ORDER BY d.sum DESC LIMIT 11");
+            ResultSet resultSet = statement.executeQuery("SELECT d.itemID1 FROM dev d where d.itemID1 <> 0380001411 ORDER BY d.sum DESC LIMIT 10");
             ResultSet resultSet2;
             PreparedStatement stmt;
             while (resultSet.next()) {
