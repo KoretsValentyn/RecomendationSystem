@@ -10,15 +10,15 @@
 </head>
 <body>
 	<div class="container">
-		<c:forEach items ="${Bbooks}" var = "book" varStatus="loop">
-		<div class="book book-${loop.index}">
-			<div class="cover">
-				<div class="desc">
-					<h2>${book.title}</h2>
+		<c:forEach items ="${books}" var = "book" varStatus="loop">
+			<div class="book book-${loop.index}">
+				<div class="cover">
+					<div class="desc">
+						<h2>${book.title}</h2>
+					</div>
+					<img src="${book.img}">
 				</div>
-				<img src="${book.img}">
 			</div>
-		</div>
 		</c:forEach>
 	</div>
 </body>

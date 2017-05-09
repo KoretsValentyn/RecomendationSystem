@@ -188,7 +188,7 @@ public class SlopeOne {
         List<Book> books = new ArrayList<>(10);
         try {
             Statement statement = conn.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT d.itemID1 FROM dev d where d.itemID1 <> 0380001411 ORDER BY d.sum DESC LIMIT 10");
+            ResultSet resultSet = statement.executeQuery("SELECT d.itemID1 FROM dev d where d.itemID1 <> 0380001411 AND d.itemID1 <> 0385504209 ORDER BY d.sum DESC LIMIT 10");
             ResultSet resultSet2;
             PreparedStatement stmt;
             while (resultSet.next()) {
@@ -247,8 +247,7 @@ public class SlopeOne {
                 resultSet2 = stmt.executeQuery();
                 if (resultSet2.next())
                     books.add(getBookFromResultSet(resultSet2));
-                resultSet2.close();
-                System.out.println("itemId: " + itemId + ", ratingValue: " + ratingValue);
+                System.out.println("isbn: " + itemId + ", ratingValue: " + ratingValue);
             }
         } catch (SQLException e) {
             e.printStackTrace();

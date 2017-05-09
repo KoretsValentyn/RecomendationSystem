@@ -56,7 +56,7 @@
 	</div>
 	<div class="container" style="padding-top:30px; padding-left:30px">
 		<%--<a href="#" class="knopka">Recomendation</a>--%>
-		<a class="knopka"  href="<c:url value="/recommendations"/>">Recomendation</a>
+		<a class="knopka" href="<c:url value="/recommendations"/>">Recommendation</a>
 	</div>
 </body>
 </html>
