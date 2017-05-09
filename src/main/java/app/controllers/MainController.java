@@ -22,12 +22,16 @@ public class MainController {
     @RequestMapping(value = "/create/mark/for-book/{isbn}/value/{value}", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     public void hello(@PathVariable("isbn") String isbn, @PathVariable("value") String value) {
-        slopeOne.addNewRating(isbn, Integer.parseInt(value));
+//       System.out.println(isbn);
+//       System.out.println(value);
+
     }
 
     @RequestMapping(value="/recommendations")
     public String recommendations(Map<String, Object> model) {
         slopeOne.fillDevForCurrentUser();
+        int l = slopeOne.predictBest(slopeOne.getCurrentUserId(), 9).size();
+        System.out.print(l);
         model.put("books",slopeOne.predictBest(slopeOne.getCurrentUserId(), 9));
         return "Recomendations";
     }
@@ -47,7 +51,7 @@ public class MainController {
         b2.setTitle("Confessions of a Shopaholic (Summer Display Opportunity)");
         books.add(b2);
         Book b3 = new Book();
-        b3.setImg("http://images.amazon.com/images/P/0385504209.01.LZZZZZZZ.jpg");
+        b3.setImg("http://images.amazon.com/images/P/0345413369.01.LZZZZZZZ.jpg");
         b3.setIsbn("0385504209");
         b3.setTitle("The Da Vinci Code author: Dan Brown");
         books.add(b3);

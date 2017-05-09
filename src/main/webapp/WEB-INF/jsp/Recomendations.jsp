@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,85 +10,16 @@
 </head>
 <body>
 	<div class="container">
-		<div class="book book-1">
+		<c:forEach items ="${Bbooks}" var = "book" varStatus="loop">
+		<div class="book book-${loop.index}">
 			<div class="cover">
 				<div class="desc">
-					<h2>Book Book Book Book Book Book Book Book Book Book Book Book Book Book</h2>
+					<h2>${book.title}</h2>
 				</div>
-				<img src="cover.jpg">
+				<img src="${book.img}">
 			</div>
 		</div>
-		<div class="book book-2">
-			<div class="cover">
-				<div class="desc">
-					<h2>Book Book Book Book Book Book Book Book Book Book Book Book Book Book </h2>
-				</div>
-				<img src="cover.jpg">
-			</div>
-		</div>
-		<div class="book book-3">
-			<div class="cover">
-				<div class="desc">
-					<h2>Book</h2>
-				</div>
-				<img src="cover.jpg">
-			</div>
-		</div>
-		<div class="book book-4">
-			<div class="cover">
-				<div class="desc">
-					<h2>Book</h2>
-				</div>
-				<img src="cover.jpg">
-			</div>
-		</div>
-		<div class="book book-5">
-			<div class="cover">
-				<div class="desc">
-					<h2>Book</h2>
-				</div>
-				<img src="cover.jpg">
-			</div>
-		</div>
-		<div class="book book-6">
-			<div class="cover">
-				<div class="desc">
-					<h2>Book Book Book Book Book Book Book Book Book Book Book Book Book Book </h2>
-				</div>
-				<img src="cover.jpg">
-			</div>
-		</div>
-		<div class="book book-7">
-			<div class="cover">
-				<div class="desc">
-					<h2>Book Book Book Book Book Book Book Book Book Book Book Book Book Book </h2>
-				</div>
-				<img src="cover.jpg">
-			</div>
-		</div>
-		<div class="book book-8">
-			<div class="cover">
-				<div class="desc">
-					<h2>Book Book Book Book Book Book Book Book Book Book Book Book Book Book </h2>
-				</div>
-				<img src="cover.jpg">
-			</div>
-		</div>
-		<div class="book book-9">
-			<div class="cover">
-				<div class="desc">
-					<h2>Book</h2>
-				</div>
-				<img src="cover.jpg">
-			</div>
-		<div class="book book-10">
-			<div class="cover">
-				<div class="desc">
-					<h2>Book</h2>
-				</div>
-				<img src="cover.jpg">
-			</div>
-		</div>
+		</c:forEach>
 	</div>
 </body>
 </html>

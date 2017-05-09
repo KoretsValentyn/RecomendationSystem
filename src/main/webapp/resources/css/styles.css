@@ -19,7 +19,7 @@ body{
 
 .book .cover{
 	position: relative;
-	max-height: 500px;
+	height: 500px;
 	overflow: hidden;
 }
 
