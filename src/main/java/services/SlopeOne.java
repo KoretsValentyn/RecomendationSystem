@@ -12,19 +12,19 @@ class SlopeOne {
     void test() {
 //        clearRatings();
 //        clearMatrix();
-        try {
-            Statement statement = conn.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM `BX-Book-Ratings`;");
-            while (resultSet.next()) {
-                int userId = resultSet.getInt(1);
-                String itemId = resultSet.getString(2);
-                System.out.println("userId: " + userId + ", itemId: " + itemId);
-                updateDevTable(userId, itemId);
-            }
-            resultSet.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Statement statement = conn.createStatement();
+//            ResultSet resultSet = statement.executeQuery("SELECT * FROM `BX-Book-Ratings`;");
+//            while (resultSet.next()) {
+//                int userId = resultSet.getInt(1);
+//                String itemId = resultSet.getString(2);
+//                System.out.println("userId: " + userId + ", itemId: " + itemId);
+//                updateDevTable(userId, itemId);
+//            }
+//            resultSet.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
 
     void updateDevTable(int userId, String itemId) {
