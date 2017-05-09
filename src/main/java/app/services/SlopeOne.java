@@ -33,7 +33,7 @@ public class SlopeOne {
 //        }
     }
 
-    void addNewRatings(List<Book> list) {
+    public void addNewRatings(List<Book> list) {
         try {
             Statement statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery("select max(userId) from `BX-Book-Ratings`");
@@ -48,6 +48,8 @@ public class SlopeOne {
                     stmt.executeUpdate();
                 }
                 resultSet.close();
+                for (Book book : list)
+                    updateDevTable(userId, book.getIsbn());
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -103,7 +105,7 @@ public class SlopeOne {
     }
 
 
-    double predict(int userId, String itemId) {
+    public double predict(int userId, String itemId) {
         try {
             double denom = 0.0; //знаменник
             double numer = 0.0; //чисельник
@@ -144,7 +146,7 @@ public class SlopeOne {
         List<Book> books = new ArrayList<>(10);
         try {
             Statement statement = conn.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT d.itemID1 FROM dev d ORDER BY d.sum DESC LIMIT 10");
+            ResultSet resultSet = statement.executeQuery("SELECT d.itemID1 FROM dev d ORDER BY d.sum DESC LIMIT 11");
             ResultSet resultSet2;
             PreparedStatement stmt;
             while (resultSet.next()) {
