@@ -143,28 +143,24 @@ public class SlopeOne {
 
     public List<Book> showInitialBooks() {
         List<Book> books = new ArrayList<>(10);
+        System.out.println("List<Book>");
         try {
             Statement statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT d.itemID1 FROM dev d ORDER BY d.sum DESC LIMIT 10");
             ResultSet resultSet2;
             PreparedStatement stmt;
+            System.out.println("PreparedStatement stmt;");
             while (resultSet.next()) {
                 String itemId = resultSet.getString("itemID1");
-                stmt = conn.prepareStatement("SELECT `book-title`, `book-author`, `image-URL-L` FROM `bx-books` where ISBN = ?;");
+                stmt = conn.prepareStatement("SELECT ISBN, `book-title`, `book-author`, `image-URL-L` FROM `bx-books` where ISBN = ?;");
                 stmt.setString(1, itemId);
+                System.out.println("tmt.setString(1, itemId);");
                 resultSet2 = stmt.executeQuery();
                 if (resultSet2.next()) {
-                    String title = resultSet2.getString(1);
-                    String author = resultSet2.getString(2);
-                    String image = resultSet2.getString(3);
-                    System.out.println("itemId: " + itemId + " title: " + title + " author: " + author + " image: " + image);
-                    Book book = new Book();
-                    book.setIsbn(itemId);
-                    book.setTitle(title);
-                    book.setAuthor(author);
-                    book.setImg(image);
-                    books.add(book);
+                    System.out.println("resultSet2.next()");
+                    books.add(getBookFromResultSet(resultSet2));
                 }
+                resultSet2.close();
             }
             resultSet.close();
         } catch (SQLException e) {
@@ -173,7 +169,22 @@ public class SlopeOne {
         return books;
     }
 
-    public void predictBest(int userId, int n) {
+    private Book getBookFromResultSet(ResultSet resultSet) throws SQLException {
+        String isbn = resultSet.getString(1);
+        String title = resultSet.getString(2);
+        String author = resultSet.getString(3);
+        String image = resultSet.getString(4);
+        System.out.println("isbn: " + isbn + " title: " + title + " author: " + author + " image: " + image);
+        Book book = new Book();
+        book.setIsbn(isbn);
+        book.setTitle(title);
+        book.setAuthor(author);
+        book.setImg(image);
+        return book;
+    }
+
+    public List<Book> predictBest(int userId, int n) {
+        List<Book> books = new ArrayList<>(n);
         try {
             String sql = "SELECT d.itemID1 as item, " +
                     "sum(d.count*(d.sum/d.count+ r.Book_Rating))/sum(d.count) as avgRat " +
@@ -187,14 +198,22 @@ public class SlopeOne {
             stmt.setInt(2, userId);
             stmt.setInt(3, n);
             ResultSet resultSet = stmt.executeQuery();
+            ResultSet resultSet2;
             while (resultSet.next()) {
                 String itemId = resultSet.getString("item");
                 double ratingValue = resultSet.getDouble("avgRat");
+                stmt = conn.prepareStatement("SELECT ISBN, `book-title`, `book-author`, `image-URL-L` FROM `bx-books` where ISBN = ?;");
+                stmt.setString(1, itemId);
+                resultSet2 = stmt.executeQuery();
+                if (resultSet2.next())
+                    books.add(getBookFromResultSet(resultSet2));
+                resultSet2.close();
                 System.out.println("itemId: " + itemId + ", ratingValue: " + ratingValue);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return books;
     }
 
     private void clearRatings() {
