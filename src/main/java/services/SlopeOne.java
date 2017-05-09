@@ -140,7 +140,7 @@ public class SlopeOne {
         return 0;
     }
 
-    List<Book> showInitialBooks() {
+    public List<Book> showInitialBooks() {
         List<Book> books = new ArrayList<>(10);
         try {
             Statement statement = conn.createStatement();
@@ -172,7 +172,7 @@ public class SlopeOne {
         return books;
     }
 
-    void predictBest(int userId, int n) {
+    public void predictBest(int userId, int n) {
         try {
             String sql = "SELECT d.itemID1 as item, " +
                     "sum(d.count*(d.sum/d.count+ r.Book_Rating))/sum(d.count) as avgRat " +
