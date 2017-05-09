@@ -1,9 +1,9 @@
-package controllers;
+package app.controllers;
 
+import app.services.SlopeOne;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import services.SlopeOne;
 
 import java.util.Map;
 
@@ -14,7 +14,9 @@ public class MainController {
 
     @RequestMapping("/")
     public String welcome(Map<String, Object> model) {
-        //slopeOne.showInitialBooks();
+        System.out.println("welcome");
+        slopeOne.showInitialBooks();
+        System.out.println("showInitialBooks()");
 //        model.put("books", slopeOne.showInitialBooks());
         return "index";
     }

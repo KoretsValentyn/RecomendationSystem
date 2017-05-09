@@ -1,8 +1,7 @@
-package services;
+package app.services;
 
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
-import pojo.Book;
+import app.pojo.Book;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -143,23 +142,18 @@ public class SlopeOne {
 
     public List<Book> showInitialBooks() {
         List<Book> books = new ArrayList<>(10);
-        System.out.println("List<Book>");
         try {
             Statement statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT d.itemID1 FROM dev d ORDER BY d.sum DESC LIMIT 10");
             ResultSet resultSet2;
             PreparedStatement stmt;
-            System.out.println("PreparedStatement stmt;");
             while (resultSet.next()) {
                 String itemId = resultSet.getString("itemID1");
                 stmt = conn.prepareStatement("SELECT ISBN, `book-title`, `book-author`, `image-URL-L` FROM `bx-books` where ISBN = ?;");
                 stmt.setString(1, itemId);
-                System.out.println("tmt.setString(1, itemId);");
                 resultSet2 = stmt.executeQuery();
-                if (resultSet2.next()) {
-                    System.out.println("resultSet2.next()");
+                if (resultSet2.next())
                     books.add(getBookFromResultSet(resultSet2));
-                }
                 resultSet2.close();
             }
             resultSet.close();

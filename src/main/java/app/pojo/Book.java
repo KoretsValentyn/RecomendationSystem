@@ -1,4 +1,4 @@
-package pojo;
+package app.pojo;
 
 public class Book {
     String isbn;
