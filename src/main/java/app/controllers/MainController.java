@@ -12,11 +12,11 @@ public class MainController {
     @Autowired
     private SlopeOne slopeOne;
 
-    @RequestMapping("/")
+    @RequestMapping(value="/")
     public String welcome(Map<String, Object> model) {
         slopeOne.showInitialBooks();
-//        model.put("books", slopeOne.showInitialBooks());
-        return "index";
+        model.put("books", slopeOne.showInitialBooks());
+        return "MainPage";
     }
 
 }
