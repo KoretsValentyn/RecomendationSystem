@@ -150,7 +150,7 @@ public class SlopeOne {
             PreparedStatement stmt;
             while (resultSet.next()) {
                 String itemId = resultSet.getString("itemID1");
-                stmt = conn.prepareStatement("SELECT `book-title`, `book-author`, `image-URL-S` FROM `bx-books` where ISBN = ?;");
+                stmt = conn.prepareStatement("SELECT `book-title`, `book-author`, `image-URL-L` FROM `bx-books` where ISBN = ?;");
                 stmt.setString(1, itemId);
                 resultSet2 = stmt.executeQuery();
                 if (resultSet2.next()) {
