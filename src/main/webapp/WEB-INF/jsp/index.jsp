@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta lang="uk-UA">
 	<title>RS</title>
-	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<link rel="stylesheet" type="text/css" href="../../../resources/css/styles.css">
 </head>
 <body>
 	<div class="container">
@@ -18,7 +18,7 @@
 					<p>Non quo dolores rem voluptas assumenda quibusdam est. Animi ratione nulla officiis nihil et. Aut veritatis tempore consectetur rerum sint soluta.</p>
 					<p>Iure nihil ut doloremque quam vel ad sunt. A ea quia accusamus voluptatem praesentium quia quaerat quos. Tempora quaerat corporis magni officia tempora. Distinctio aut impedit at maiores perspiciatis ratione quasi. Rerum harum consequatur deserunt fugit. Incidunt dolorem animi rerum atque ut sequi. Id totam consectetur est adipisci sit. Accusantium quidem dicta eum autem iusto sunt quasi. </p>
 				</div>
-				<img src="cover.jpg">
+				<img src="../../cover.jpg">
 			</div>
 			<div class="rating">
 				<input type="radio" name="rating-1" value="1" id="star-1-1"><label for="star-1-1">1</label>
@@ -43,7 +43,7 @@
 					<p>Non quo dolores rem voluptdfgdfgdfs assumenda quibusdam est. Animi ratione nulla officiis nihil et. Aut veritatis tempore consectetur rerum sint soluta.</p>
 					<p>Iure nihil ut doloremque quam vel ad sunt. A ea quia accusamus voluptatem praesentium quia quaerat quos. Tempora quaerat corporis magni officia tempora. Distinctio aut impedit at maiores perspiciatis ratione quasi. Rerum harum consequatur deserunt fugit. Incidunt dolorem animi rerum atque ut sequi. Id totam consectetur est adipisci sit. Accusantium quidem dicta eum autem iusto sunt quasi. </p>
 				</div>
-				<img src="cover.jpg">
+				<img src="../../cover.jpg">
 			</div>
 			<div class="rating">
 				<input type="radio" name="rating-2" value="1" id="star-2-1"><label for="star-2-1">1</label>
@@ -64,7 +64,7 @@
 					<h2>Book</h2>
 					<p>This book is about how awesome you are.</p>
 				</div>
-				<img src="cover.jpg">
+				<img src="../../cover.jpg">
 			</div>
 			<div class="rating">
 				<input type="radio" name="rating-3" value="1" id="star-3-1"><label for="star-3-1">1</label>
@@ -85,7 +85,7 @@
 					<h2>Book</h2>
 					<p>This book is about how awesome you are.</p>
 				</div>
-				<img src="cover.jpg">
+				<img src="../../cover.jpg">
 			</div>
 			<div class="rating">
 				<input type="radio" name="rating-4" value="1" id="star-4-1"><label for="star-4-1">1</label>
@@ -106,7 +106,7 @@
 					<h2>Book</h2>
 					<p>This book is about how awesome you are.</p>
 				</div>
-				<img src="cover.jpg">
+				<img src="../../cover.jpg">
 			</div>
 			<div class="rating">
 				<input type="radio" name="rating-5" value="1" id="star-5-1"><label for="star-5-1">1</label>
@@ -131,7 +131,7 @@
 					<p>Non quo dolores rem voluptas assumenda quibusdam est. Animi ratione nulla officiis nihil et. Aut veritatis tempore consectetur rerum sint soluta.</p>
 					<p>Iure nihil ut doloremque quam vel ad sunt. A ea quia accusamus voluptatem praesentium quia quaerat quos. Tempora quaerat corporis magni officia tempora. Distinctio aut impedit at maiores perspiciatis ratione quasi. Rerum harum consequatur deserunt fugit. Incidunt dolorem animi rerum atque ut sequi. Id totam consectetur est adipisci sit. Accusantium quidem dicta eum autem iusto sunt quasi. </p>
 				</div>
-				<img src="cover.jpg">
+				<img src="../../cover.jpg">
 			</div>
 			<div class="rating">
 				<input type="radio" name="rating-6" value="1" id="star-6-1"><label for="star-6-1">1</label>
@@ -156,7 +156,7 @@
 					<p>Non quo dolores rem voluptas assumenda quibusdam est. Animi ratione nulla officiis nihil et. Aut veritatis tempore consectetur rerum sint soluta.</p>
 					<p>Iure nihil ut doloremque quam vel ad sunt. A ea quia accusamus voluptatem praesentium quia quaerat quos. Tempora quaerat corporis magni officia tempora. Distinctio aut impedit at maiores perspiciatis ratione quasi. Rerum harum consequatur deserunt fugit. Incidunt dolorem animi rerum atque ut sequi. Id totam consectetur est adipisci sit. Accusantium quidem dicta eum autem iusto sunt quasi. </p>
 				</div>
-				<img src="cover.jpg">
+				<img src="../../cover.jpg">
 			</div>
 			<div class="rating">
 				<input type="radio" name="rating-7" value="1" id="star-7-1"><label for="star-7-1">1</label>
@@ -181,7 +181,7 @@
 					<p>Non quo dolores rem voluptas assumenda quibusdam est. Animi ratione nulla officiis nihil et. Aut veritatis tempore consectetur rerum sint soluta.</p>
 					<p>Iure nihil ut doloremque quam vel ad sunt. A ea quia accusamus voluptatem praesentium quia quaerat quos. Tempora quaerat corporis magni officia tempora. Distinctio aut impedit at maiores perspiciatis ratione quasi. Rerum harum consequatur deserunt fugit. Incidunt dolorem animi rerum atque ut sequi. Id totam consectetur est adipisci sit. Accusantium quidem dicta eum autem iusto sunt quasi. </p>
 				</div>
-				<img src="cover.jpg">
+				<img src="../../cover.jpg">
 			</div>
 			<div class="rating">
 				<input type="radio" name="rating-8" value="1" id="star-8-1"><label for="star-8-1">1</label>
@@ -202,7 +202,7 @@
 					<h2>Book</h2>
 					<p>This book is about how awesome you are.</p>
 				</div>
-				<img src="cover.jpg">
+				<img src="../../cover.jpg">
 			</div>
 			<div class="rating">
 				<input type="radio" name="rating-9" value="1" id="star-9-1"><label for="star-9-1">1</label>
@@ -223,7 +223,7 @@
 					<h2>Book</h2>
 					<p>This book is about how awesome you are.</p>
 				</div>
-				<img src="cover.jpg">
+				<img src="../../cover.jpg">
 			</div>
 			<div class="rating">
 				<input type="radio" name="rating-10" value="1" id="star-10-1"><label for="star-10-1">1</label>
