@@ -3,6 +3,7 @@ package services;
 import pojo.Book;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 class SlopeOne {
@@ -137,8 +138,36 @@ class SlopeOne {
         return 0;
     }
 
-    List<Book> showInitialBooks(){
-        return null;
+    List<Book> showInitialBooks() {
+        List<Book> books = new ArrayList<>(10);
+        try {
+            Statement statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT d.itemID1 FROM dev d ORDER BY d.sum DESC LIMIT 10");
+            ResultSet resultSet2;
+            PreparedStatement stmt;
+            while (resultSet.next()) {
+                String itemId = resultSet.getString("itemID1");
+                stmt = conn.prepareStatement("SELECT `book-title`, `book-author`, `image-URL-S` FROM `bx-books` where ISBN = ?;");
+                stmt.setString(1, itemId);
+                resultSet2 = stmt.executeQuery();
+                if (resultSet2.next()) {
+                    String title = resultSet2.getString(1);
+                    String author = resultSet2.getString(2);
+                    String image = resultSet2.getString(3);
+                    System.out.println("itemId: " + itemId + " title: " + title + " author: " + author + " image: " + image);
+                    Book book = new Book();
+                    book.setIsbn(itemId);
+                    book.setTitle(title);
+                    book.setAuthor(author);
+                    book.setImg(image);
+                    books.add(book);
+                }
+            }
+            resultSet.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return books;
     }
 
     void predictBest(int userId, int n) {
