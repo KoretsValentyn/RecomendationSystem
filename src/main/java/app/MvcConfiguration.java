@@ -25,8 +25,10 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
             DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("/**").addResourceLocations("/resources/css/");
-//    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**")
+                .addResourceLocations("/resources/");
+    }
 }
