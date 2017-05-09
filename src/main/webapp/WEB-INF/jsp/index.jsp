@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta lang="uk-UA">
 	<title>RS</title>
-	<link rel="stylesheet" type="text/css" href="../../../resources/css/styles.css">
+	<link rel="stylesheet" type="text/css" href="../css/styles.css">
 </head>
 <body>
 	<div class="container">

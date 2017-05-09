@@ -14,9 +14,7 @@ public class MainController {
 
     @RequestMapping("/")
     public String welcome(Map<String, Object> model) {
-        System.out.println("welcome");
         slopeOne.showInitialBooks();
-        System.out.println("showInitialBooks()");
 //        model.put("books", slopeOne.showInitialBooks());
         return "index";
     }
